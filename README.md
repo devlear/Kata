@@ -1,0 +1,2 @@
+# Kata
+Small Daily Practices
