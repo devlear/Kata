@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
+using Permutations.Tests.EnumerationExtensionsTests;
 using System.Linq;
 using Xunit;
 
-namespace Permutations.Tests.EnumerationExtensionsTests
+namespace Permutations.Tests
 {
-    public class PermutationSamplesTests
+    public class GenericPermutationTests
     {
         [Fact]
         public void transfigure_list_of_three_animals()
