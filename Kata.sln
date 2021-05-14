@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permutations.Tests", "tests\Permutations.Tests\Permutations.Tests.csproj", "{BE924439-F7DD-4D07-9DFB-4479AEC97DD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permutations.Tests", "tests\Permutations.Tests\Permutations.Tests.csproj", "{BE924439-F7DD-4D07-9DFB-4479AEC97DD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permutations", "src\Permutations\Permutations.csproj", "{66A8E899-566D-42A4-B39C-8D9442AAC49A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permutations", "src\Permutations\Permutations.csproj", "{66A8E899-566D-42A4-B39C-8D9442AAC49A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoSumProblem", "src\TwoSum\TwoSumProblem.csproj", "{42D52D0E-DEA8-4BE1-A143-BA7B89953569}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoSumTests", "tests\TwoSumTests\TwoSumTests.csproj", "{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{66A8E899-566D-42A4-B39C-8D9442AAC49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66A8E899-566D-42A4-B39C-8D9442AAC49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66A8E899-566D-42A4-B39C-8D9442AAC49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D52D0E-DEA8-4BE1-A143-BA7B89953569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D52D0E-DEA8-4BE1-A143-BA7B89953569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D52D0E-DEA8-4BE1-A143-BA7B89953569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D52D0E-DEA8-4BE1-A143-BA7B89953569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
