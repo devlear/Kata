@@ -14,6 +14,19 @@ namespace FizzBuzzExample.Tests
         [Fact]
         public void when_n_is_1_result_should_be()
         {
+            var fizzBuzz = new FizzBuzzTddActual();
+
+            var result = fizzBuzz.Test(1);
+
+            result.Should().BeEmpty();
+        }
+    }
+
+    public class FizzBuzzTddActual
+    {
+        public string Test(int number)
+        {
+            return "";
         }
     }
 }
