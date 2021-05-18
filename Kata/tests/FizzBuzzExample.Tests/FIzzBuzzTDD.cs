@@ -51,13 +51,65 @@ namespace FizzBuzzExample.Tests
 
     public class FizzBuzzTddActual
     {
+        private readonly BuzzRuleTdd buzz;
+
+        public FizzBuzzTddActual()
+        {
+            var nullRull = new DefaultRuleTdd();
+            var fizz = new FizzRuleTdd(nullRull);
+            buzz = new BuzzRuleTdd(fizz);
+        }
+
+        public string Test(int number)
+        {
+            return buzz.Test(number);
+        }
+    }
+
+    public class FizzRuleTdd : IRuleTdd
+    {
+        private readonly IRuleTdd next;
+
+        public FizzRuleTdd(IRuleTdd next)
+        {
+            this.next = next;
+        }
+
         public string Test(int number)
         {
             if (number % 3 == 0)
                 return "Fizz";
-            if (number % 5 == 0)
-                return "Fizz";
-            return "";
+            return next.Test(number);
         }
+    }
+
+    public class BuzzRuleTdd : IRuleTdd
+    {
+        private readonly IRuleTdd next;
+
+        public BuzzRuleTdd(IRuleTdd next)
+        {
+            this.next = next;
+        }
+
+        public string Test(int number)
+        {
+            if (number % 5 == 0)
+                return "Buzz";
+            return next.Test(number);
+        }
+    }
+
+    public class DefaultRuleTdd : IRuleTdd
+    {
+        public string Test(int number)
+        {
+            return string.Empty;
+        }
+    }
+
+    public interface IRuleTdd
+    {
+        string Test(int number);
     }
 }
