@@ -20,12 +20,24 @@ namespace FizzBuzzExample.Tests
 
             result.Should().BeEmpty();
         }
+
+        [Fact]
+        public void when_n_is_3_result_should_be()
+        {
+            var fizzBuzz = new FizzBuzzTddActual();
+
+            var result = fizzBuzz.Test(3);
+
+            result.Should().Be("Fizz");
+        }
     }
 
     public class FizzBuzzTddActual
     {
         public string Test(int number)
         {
+            if (number % 3 == 0)
+                return "Fizz";
             return "";
         }
     }
