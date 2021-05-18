@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoSumProblem", "src\TwoSum
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoSumTests", "tests\TwoSumTests\TwoSumTests.csproj", "{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzzExample", "src\FizzBuzz\FizzBuzzExample.csproj", "{D0E77FDD-0E56-43A6-89A7-FFDAB376B3D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzExample.Tests", "tests\FizzBuzzExample.Tests\FizzBuzzExample.Tests.csproj", "{18788ECE-A7E7-45B1-8DC5-6A8F7384A652}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0BB6B6-2CE7-4CFF-B680-EC0B4F7FE982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E77FDD-0E56-43A6-89A7-FFDAB376B3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E77FDD-0E56-43A6-89A7-FFDAB376B3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E77FDD-0E56-43A6-89A7-FFDAB376B3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E77FDD-0E56-43A6-89A7-FFDAB376B3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18788ECE-A7E7-45B1-8DC5-6A8F7384A652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18788ECE-A7E7-45B1-8DC5-6A8F7384A652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18788ECE-A7E7-45B1-8DC5-6A8F7384A652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18788ECE-A7E7-45B1-8DC5-6A8F7384A652}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
