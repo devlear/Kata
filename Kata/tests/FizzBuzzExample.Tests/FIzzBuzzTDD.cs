@@ -26,10 +26,13 @@ namespace FizzBuzzExample.Tests
             result.Should().BeEmpty();
         }
 
-        [Fact]
-        public void when_n_is_3_result_should_be()
+        [Theory]
+        [InlineData(3)]
+        [InlineData(6)]
+        [InlineData(12)]
+        public void when_n_is_factor_of_3_result_should_be(int number)
         {
-            var result = fizzBuzz.Test(3);
+            var result = fizzBuzz.Test(number);
 
             result.Should().Be("Fizz");
         }
