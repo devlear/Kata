@@ -36,6 +36,17 @@ namespace FizzBuzzExample.Tests
 
             result.Should().Be("Fizz");
         }
+
+        [Theory]
+        [InlineData(5)]
+        [InlineData(10)]
+        [InlineData(20)]
+        public void when_n_is_factor_of_5_result_should_be(int number)
+        {
+            var result = fizzBuzz.Test(number);
+
+            result.Should().Be("Buzz");
+        }
     }
 
     public class FizzBuzzTddActual
@@ -43,6 +54,8 @@ namespace FizzBuzzExample.Tests
         public string Test(int number)
         {
             if (number % 3 == 0)
+                return "Fizz";
+            if (number % 5 == 0)
                 return "Fizz";
             return "";
         }
