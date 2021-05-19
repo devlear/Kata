@@ -6,75 +6,80 @@ namespace FizzBuzzExample
 {
     public class FizzBuzz
     {
-        private readonly FizzBuzzTester fizzBuzzTester;
-        private readonly FizzRule rules;
-
-        public FizzBuzz(FizzBuzzTester fizzBuzzTester)
-        {
-            this.fizzBuzzTester = fizzBuzzTester;
-            rules = new FizzRule(new BuzzRule(new NoMatchRule()));
-        }
-
         public IEnumerable<string> Run(int n)
         {
+            var rules = new FizzRule(new BuzzRule(new JazzRule(new NoMatchRule())));
             return Enumerable.Range(1, n)
-                .Select(i => $"[{i}] {rules.RunCheck(i)}");
+                .Select(i => rules.RunCheck("", i))
+                .ToList();
                 //.Select(i => $"[{i}] {fizzBuzzTester.TestNumber(i)}");
         }
-    }
 
-    public class BuzzRule : IRule
-    {
-        private readonly IRule nextRule;
-
-        public BuzzRule(IRule nextRule)
+        private class JazzRule : IRule
         {
-            this.nextRule = nextRule;
+            private readonly IRule next;
+
+            public JazzRule(IRule next)
+            {
+                this.next = next;
+            }
+
+            public string RunCheck(string current, int number)
+            {
+                if (number % 7 == 0)
+                    current += "Jazz";
+                return next.RunCheck(current, number);
+            }
         }
 
-        public string RunCheck(int number)
+        private class BuzzRule : IRule
         {
-            string value = "";
-            if (number % 5 == 0)
-                value += "Buzz";
-            return value += nextRule.RunCheck(number);
-        }
-    }
+            private readonly IRule nextRule;
 
-    public class FizzRule : IRule
-    {
-        private readonly IRule nextRule;
+            public BuzzRule(IRule nextRule)
+            {
+                this.nextRule = nextRule;
+            }
 
-        public FizzRule(IRule nextRule)
-        {
-            this.nextRule = nextRule;
-        }
-
-        public string RunCheck(int number)
-        {
-            string value = "";
-            if (number % 3 == 0) 
-                value += "Fizz";
-            return value += nextRule.RunCheck(number);
-        }
-    }
-
-    public class NoMatchRule : IRule
-    {
-        public NoMatchRule()
-        {
-
+            public string RunCheck(string current, int number)
+            {
+                if (number % 5 == 0)
+                    current += "Buzz";
+                return nextRule.RunCheck(current, number);
+            }
         }
 
-        public string RunCheck(int number)
+        private class FizzRule : IRule
         {
-            return "";
-        }
-    }
+            private readonly IRule nextRule;
 
-    public interface IRule
-    {
-        string RunCheck(int number);
+            public FizzRule(IRule nextRule)
+            {
+                this.nextRule = nextRule;
+            }
+
+            public string RunCheck(string current, int number)
+            {
+                if (number % 3 == 0)
+                    current += "Fizz";
+                return nextRule.RunCheck(current, number);
+            }
+        }
+
+        private class NoMatchRule : IRule
+        {
+            public string RunCheck(string current, int number)
+            {
+                if (string.IsNullOrEmpty(current))
+                    return $"{number}";
+                return current;
+            }
+        }
+
+        public interface IRule
+        {
+            string RunCheck(string current, int number);
+        }
     }
 
     public class FizzBuzzTester

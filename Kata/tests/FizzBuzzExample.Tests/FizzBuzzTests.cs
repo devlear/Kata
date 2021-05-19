@@ -9,17 +9,16 @@ namespace FizzBuzzExample.Tests
     public class FizzBuzzTests
     {
         [Theory]
-        [InlineData(5)]
+        [InlineData(7)]
         public void RunTest(int number)
         {
-            var fizzBuzzTester = new FizzBuzzTester();
-            var fizzBuzz = new FizzBuzz(fizzBuzzTester);
+            var fizzBuzz = new FizzBuzz();
 
             var actual = fizzBuzz.Run(number);
 
             actual.Should().ContainInOrder(expected);
         }
 
-        private IEnumerable<string> expected = new[] { "[1] ", "[2] ", "[3] Fizz", "[4] ", "[5] Buzz" };
+        private IEnumerable<string> expected = new[] { "1", "2", "Fizz", "4", "Buzz", "Fizz", "Jazz" };
     }
 }
