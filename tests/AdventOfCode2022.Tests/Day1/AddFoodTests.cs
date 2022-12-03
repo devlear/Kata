@@ -3,8 +3,11 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using FluentAssertions;
 
-namespace AdventOfCode2022
+namespace AdventOfCode2022.Tests.Day1
 {
+    /// <summary>
+    /// Ensure counting of food works
+    /// </summary>
     public class AddFoodTests
     {
         public readonly Fixture _fixture;
