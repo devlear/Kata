@@ -1,5 +1,6 @@
 using AdventOfCode2022.Day1;
 using AutoFixture;
+using AutoFixture.Xunit2;
 using FluentAssertions;
 
 namespace AdventOfCode2022
@@ -13,17 +14,26 @@ namespace AdventOfCode2022
             _fixture = new Fixture();
         }
 
-        [Fact]
-        public void when_adding_food_calorie_total_should_be()
+        [Theory]
+        [AutoData]
+        public void given_food_is_added_then_calories_should_match(Food food)
         {
-            var elf = Elf.Create();
-            var food = _fixture.Build<Food>()
-                .With(p => p.Calories, _ = _fixture.Create<int>())
-                .Create();
+            var sut = Elf.Create();
 
-            elf.AddFood(food);
+            sut.AddFood(food);
 
-            elf.TotalCalories.Should().Be(food.Calories);
+            sut.TotalCalories.Should().Be(food.Calories);
+        }
+
+        [Theory]
+        [AutoData]
+        public void given_multiple_food_items_are_added_then_calories_should_be_total(Food[] food)
+        {
+            var sut = Elf.Create();
+
+            Array.ForEach(food, sut.AddFood);
+
+            sut.TotalCalories.Should().Be(food.Sum(food => food.Calories));
         }
     }
 }
