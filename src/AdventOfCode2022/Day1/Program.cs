@@ -6,5 +6,24 @@
 // See https://aka.ms/new-console-template for more information
 
 
-Console.WriteLine("Hello, World!");
+using AdventOfCode2022.Day1;
 
+var path = args[0];
+var elfList = new List<Elf>();
+using (var reader = new StreamReader(path))
+{
+    var foodReader = new FoodReader(reader);
+    int[] foodValues;
+    while ((foodValues = foodReader.Next()).Length != 0)
+    {
+        var food = foodValues.Select(calorie => new Food { Calories = calorie })
+            .ToArray();
+        var elf = Elf.Create();
+        Array.ForEach(food, elf.AddFood);
+        elfList.Add(elf);
+    }
+}
+
+var maxCalorie = elfList.Max(elf => elf.TotalCalories);
+
+Console.WriteLine($"Biggest Calorie count is: {maxCalorie}");

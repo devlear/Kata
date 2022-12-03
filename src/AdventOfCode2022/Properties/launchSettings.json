@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AdventOfCode2022": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Pat\\source\\repos\\devlear\\Kata\\src\\AdventOfCode2022\\input.txt"
+    }
+  }
+}
