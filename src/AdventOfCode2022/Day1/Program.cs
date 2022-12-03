@@ -24,6 +24,13 @@ using (var reader = new StreamReader(path))
     }
 }
 
-var maxCalorie = elfList.Max(elf => elf.TotalCalories);
+var sortedElves = elfList.OrderByDescending(elf => elf.TotalCalories);
+
+var maxCalorie = sortedElves.Take(1).First().TotalCalories;
 
 Console.WriteLine($"Biggest Calorie count is: {maxCalorie}");
+
+var topX = 3;
+var topXTotal = sortedElves.Take(topX).Sum(elf => elf.TotalCalories);
+
+Console.WriteLine($"Top {topX} count is: {topXTotal}");
