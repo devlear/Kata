@@ -25,4 +25,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AdventOfCode2022\AdventOfCode2022.csproj" />
+  </ItemGroup>
+
 </Project>
