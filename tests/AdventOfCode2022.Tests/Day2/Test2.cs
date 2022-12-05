@@ -1,6 +1,7 @@
 ﻿using AdventOfCode2022.Day2;
 using AdventOfCode2022.Tests.Day1;
 using FluentAssertions;
+using System.ComponentModel;
 
 namespace AdventOfCode2022.Tests.Day2
 {
@@ -105,13 +106,42 @@ namespace AdventOfCode2022.Tests.Day2
 
     public class TestFully
     {
+        [Fact]
         public void test()
         {
-            var stream = _TestHelpers.GetTextReaderStreamFromString("A Y");
+            var sut = new Tie();
 
-            var line = stream.ReadLine();
-            line.First();
-            line.Skip(2).First();
+            var result = sut.Sign(new Rock());
+
+            result.Should().BeOfType<Rock>();
+        }
+
+        [Theory]
+        [InlineData('A', 'B')]
+        [InlineData('B', 'C')]
+        [InlineData('C', 'A')]
+        public void given_test_next_should_be(char given, char expected)
+        {
+            var handSign = HandSignFactory.GetSign(given);
+
+            var result = handSign.Next();
+
+            var expectedSign = HandSignFactory.GetSign(expected);
+            result.Should().BeOfType(expectedSign.GetType());
+        }
+
+        [Theory]
+        [InlineData('A', 'C')]
+        [InlineData('B', 'A')]
+        [InlineData('C', 'B')]
+        public void given_test_previous_should_be(char given, char expected)
+        {
+            var handSign = HandSignFactory.GetSign(given);
+
+            var result = handSign.Previous();
+
+            var expectedSign = HandSignFactory.GetSign(expected);
+            result.Should().BeOfType(expectedSign.GetType());
         }
     }
 }

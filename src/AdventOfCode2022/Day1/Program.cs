@@ -12,7 +12,6 @@ using System.Runtime.CompilerServices;
 
 var path = args[0];
 var matches = new List<Match>();
-var factory = new HandSignFactory();
 using (var reader = new StreamReader(path))
 {
     string? line;
@@ -20,8 +19,8 @@ using (var reader = new StreamReader(path))
     {
         matches.Add(
             new Match(
-                factory.GetSign(line.First()),
-                factory.GetSign(line.Skip(2).First())));
+                HandSignFactory.GetSign(line.First()),
+                HandSignFactory.GetCondition(line.Skip(2).First())));
     }
 }
 

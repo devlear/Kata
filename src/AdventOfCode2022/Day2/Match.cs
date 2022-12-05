@@ -11,6 +11,12 @@
             this.me = me;
         }
 
+        public Match(IHandSign opponent, IGameResult result)
+        {
+            this.opponent = opponent;
+            this.me = result.Sign(opponent);
+        }
+
         public int Shoot()
         {
             return DoResults(opponent, me) + me.Points;
@@ -31,29 +37,44 @@
         }
     }
 
-    public class HandSignFactory
+    public static class HandSignFactory
     {
-        private static IDictionary<char, IHandSign> _signDictionary = new Dictionary<char, IHandSign>();
+        private static IEnumerable<IHandSign> _signDictionary
+            = new IHandSign[] { new Rock(), new Paper(), new Scissors() };
+        private static IEnumerable<IGameResult> _conditionDictionary
+            = new IGameResult[] { new Lose(), new Tie(), new Win() };
 
-        public HandSignFactory()
+        public static IHandSign GetSign(char sign)
         {
-            _signDictionary.Add('A', new Rock());
-            _signDictionary.Add('B', new Paper());
-            _signDictionary.Add('C', new Scissors());
-            _signDictionary.Add('X', new Rock());
-            _signDictionary.Add('Y', new Paper());
-            _signDictionary.Add('Z', new Scissors());
+            return _signDictionary.First(s => s.Id == sign);
         }
 
-        public IHandSign GetSign(char sign)
+        public static IGameResult GetCondition(char sign)
         {
-            return _signDictionary[sign];
+            return _conditionDictionary.First(s => s.Id == sign);
+        }
+
+        public static IHandSign Next(this IHandSign sign)
+        {
+            var next = sign.Id + 1;
+            if (next > 'C')
+                next -= 3;
+            return GetSign((char)next);
+        }
+
+        public static IHandSign Previous(this IHandSign sign)
+        {
+            var next = sign.Id - 1;
+            if (next < 'A')
+                next += 3;
+            return GetSign((char)next);
         }
     }
 
     public class Rock : IHandSign, IComparable<IHandSign>
     {
         public int Points => 1;
+        public char Id => 'A';
 
         public int CompareTo(IHandSign? other)
         {
@@ -68,6 +89,7 @@
     public class Paper : IHandSign, IComparable<IHandSign>
     {
         public int Points => 2;
+        public char Id => 'B';
 
         public int CompareTo(IHandSign? other)
         {
@@ -82,6 +104,7 @@
     public class Scissors : IHandSign, IComparable<IHandSign>
     {
         public int Points => 3;
+        public char Id => 'C';
 
         public int CompareTo(IHandSign? other)
         {
@@ -96,5 +119,40 @@
     public interface IHandSign : IComparable<IHandSign>
     {
         int Points { get; }
+        char Id { get; }
+    }
+    
+    public interface IGameResult
+    {
+        char Id { get; }
+        IHandSign Sign(IHandSign opponentsSign);
+    }
+
+    public class Lose : IGameResult
+    {
+        public char Id => 'X';
+        public IHandSign Sign(IHandSign opponentsSign)
+        {
+            return opponentsSign.Previous();
+        }
+    }
+
+    public class Tie : IGameResult
+    {
+        public char Id => 'Y';
+        public IHandSign Sign(IHandSign opponentsSign)
+        {
+            return opponentsSign;
+        }
+    }
+
+    public class Win : IGameResult
+    {
+        public char Id => 'Z';
+
+        public IHandSign Sign(IHandSign opponentsSign)
+        {
+            return opponentsSign.Next();
+        }
     }
 }
