@@ -7,30 +7,23 @@
 
 
 using AdventOfCode2022.Day1;
+using AdventOfCode2022.Day2;
+using System.Runtime.CompilerServices;
 
 var path = args[0];
-var elfList = new List<Elf>();
+var matches = new List<Match>();
+var factory = new HandSignFactory();
 using (var reader = new StreamReader(path))
 {
-    var foodReader = new FoodReader(reader);
-    int[] foodValues;
-    while ((foodValues = foodReader.Next()).Length != 0)
+    string? line;
+    while(!string.IsNullOrEmpty(line = reader.ReadLine()))
     {
-        var food = foodValues.Select(calorie => new Food { Calories = calorie })
-            .ToArray();
-        var elf = Elf.Create();
-        Array.ForEach(food, elf.AddFood);
-        elfList.Add(elf);
+        matches.Add(
+            new Match(
+                factory.GetSign(line.First()),
+                factory.GetSign(line.Skip(2).First())));
     }
 }
 
-var sortedElves = elfList.OrderByDescending(elf => elf.TotalCalories);
-
-var maxCalorie = sortedElves.Take(1).First().TotalCalories;
-
-Console.WriteLine($"Biggest Calorie count is: {maxCalorie}");
-
-var topX = 3;
-var topXTotal = sortedElves.Take(topX).Sum(elf => elf.TotalCalories);
-
-Console.WriteLine($"Top {topX} count is: {topXTotal}");
+var tourneyTotal = matches.Sum(match => match.Shoot());
+Console.WriteLine($"total points is: {tourneyTotal}");

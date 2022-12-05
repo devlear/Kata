@@ -360,3 +360,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/AdventOfCode2022/input1.txt
+/src/AdventOfCode2022/input2.txt
+/src/AdventOfCode2022/Properties/launchSettings.json
