@@ -6,24 +6,30 @@
 // See https://aka.ms/new-console-template for more information
 
 
-using AdventOfCode2022.Day3;
+using AdventOfCode2022.Day4;
 
 var path = args[0];
-var ruckSacks = new List<Rucksack>();
+int more = 0;
 using (var reader = new StreamReader(path))
 {
     string? line;
     while (!string.IsNullOrWhiteSpace(line = reader.ReadLine()))
     {
-        ruckSacks.Add(
-            Rucksack.Create(line));
+        var twoParts = line.Split(',');
+        var elfPair = twoParts.Select(x =>
+        {
+            int[] two = x.Split('-').Select(x => int.Parse(x)).ToArray();
+            var elf = new Elf();
+            elf.SetAssignments(two[0], two[1]);
+            return elf;
+        }).ToArray();
+
+        if (CompareThings.Overlapping(elfPair[0], elfPair[1]))
+        {
+            more++;
+        }
     }
 }
-var elfGroups = ruckSacks.GroupByThree();
-var badges = elfGroups.GetElvesIntersections();
 
-var calc = new RucksackCalculator();
-var totalPriority = badges.Select(calc.GetPoints)
-    .Sum();
 
-Console.WriteLine($"Total Priority: {totalPriority}");
+Console.WriteLine($"Total Priority: {more}");
