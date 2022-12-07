@@ -6,15 +6,22 @@
 // See https://aka.ms/new-console-template for more information
 
 
-using AdventOfCode2022.Day1;
+using AdventOfCode2022.Day3;
 
 var path = args[0];
+var ruckSacks = new List<Rucksack>();
+using (var reader = new StreamReader(path))
+{
+    string? line;
+    while (!string.IsNullOrWhiteSpace(line = reader.ReadLine()))
+    {
+        ruckSacks.Add(
+            Rucksack.Create(line));
+    }
+}
 
-var elfList = FoodCounter.CountFood(path);
-var maxCalorie = elfList.CountCaloriesForTopX(1);
-Console.WriteLine($"Biggest Calorie count is: {maxCalorie}");
+var calc = new RucksackCalculator();
+var totalPriority = ruckSacks.Select(r => calc.GetPoints(r.GetDuplicate()))
+    .Sum();
 
-var topX = 3;
-var topXTotal = elfList.CountCaloriesForTopX(topX);
-
-Console.WriteLine($"Top {topX} count is: {topXTotal}");
+Console.WriteLine($"Total Priority: {totalPriority}");
