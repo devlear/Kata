@@ -11,11 +11,14 @@
             var chunks = contents.Chunk(contents.Length / 2);
             return new Rucksack()
             {
+                TotalContents = contents.ToCharArray(),
                 CompartmentOne = chunks.First(),
                 CompartmentTwo = chunks.Skip(1).First()
             };
         }
 
+
+        public char[] TotalContents { get; set; }
         public char[] CompartmentOne { get; set; }
         public char[] CompartmentTwo { get; set; }
 

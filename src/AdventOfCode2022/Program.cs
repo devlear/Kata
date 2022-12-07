@@ -19,9 +19,11 @@ using (var reader = new StreamReader(path))
             Rucksack.Create(line));
     }
 }
+var elfGroups = ruckSacks.GroupByThree();
+var badges = elfGroups.GetElvesIntersections();
 
 var calc = new RucksackCalculator();
-var totalPriority = ruckSacks.Select(r => calc.GetPoints(r.GetDuplicate()))
+var totalPriority = badges.Select(calc.GetPoints)
     .Sum();
 
 Console.WriteLine($"Total Priority: {totalPriority}");
